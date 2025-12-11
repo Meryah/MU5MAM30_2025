@@ -13,9 +13,57 @@
  * Idea behind computation :
  * -------------------------
  *
- * Hiden for now.
+ * see pdf FEM_mass.pdf
+ *
+ * * The mass matrix M is given by:
+ * M_ii = Area(ABC) / 6
+ * M_ij = Area(ABC) / 12 for i != j
+ *
+ * Area(ABC) = 0.5 * ||AB x AC|| (assuming ABC are in 3D, and the area is calculated
+ * in the plane where the triangle lies, based on 3D vectors)
+
  */
-void inline mass(const Vec3d &AB, const Vec3d &AC, double *__restrict M)
+void inline mass(const Vec3d& AB, const Vec3d& AC, double* __restrict M)
 {
-	/* Your implementation goes here ! */
+  // Compute the area of the triangle ABC.
+  Vec3d  cross_product = cross(AB, AC);
+  double area          = 0.5 * norm(cross_product);
+
+  // Mii = Area / 6.
+  double diagonal_term = area / 6.0;
+
+  // Mij = Area / 12.
+  double off_diagonal_term = area / 12.0;
+
+  /*
+   * Construct the mass matrix M in row-major order:
+      Recall that the mass matrix is symmetric, so M[i][j] = M[j][i]
+  */
+
+  // M[0] = M[0][0]
+  M[0] = diagonal_term;
+
+  // M[1] = M[0][1]
+  M[1] = off_diagonal_term;
+
+  // M[2] = M[0][2]
+  M[2] = off_diagonal_term;
+
+  // M[3] = M[1][0]
+  M[3] = off_diagonal_term;
+
+  // M[4] = M[1][1]
+  M[4] = diagonal_term;
+
+  // M[5] = M[1][2]
+  M[5] = off_diagonal_term;
+
+  // M[6] = M[2][0]
+  M[6] = off_diagonal_term;
+
+  // M[7] = M[2][1]
+  M[7] = off_diagonal_term;
+
+  // M[8] = M[2][2]
+  M[8] = diagonal_term;
 }

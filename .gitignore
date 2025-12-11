@@ -1,3 +1,4 @@
 *.swp
 **/build/
 **/.cache/
+utils/some_of_my_config/
