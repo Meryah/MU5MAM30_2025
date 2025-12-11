@@ -13,7 +13,7 @@
  * Idea behind computation :
  * -------------------------
  *
- * see pdf FEM_mass.pdf
+ * see pdf FEM_mass_stiffness.pdf
  *
  * * The mass matrix M is given by:
  * M_ii = Area(ABC) / 6
