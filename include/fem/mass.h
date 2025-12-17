@@ -22,6 +22,7 @@ void inline mass(const Vec3d &AB, const Vec3d &AC, double *__restrict M)
 	/*Même si cross est le pdt vectoriel en 3D on peut écrire (x,y,0) et comme on prend la norme on a exactement ce qu'on veut*/
     
 	double detJacobienne = norm(cross(AB,AC));
+	
 
 	if (detJacobienne == 0.0)
 	{
@@ -29,12 +30,7 @@ void inline mass(const Vec3d &AB, const Vec3d &AC, double *__restrict M)
 	}
 
 	else {
-		for (int i=0; i<3; i++)
-		{
-			for (int j=0; j<3; j++)
-			{
-				M[3*i+j] = (i==j) ? : (detJacobienne/12.0) : (detJacobienne/24.0) ;
-			}	
-		}
+		M[0] = detJacobienne/12.0; /*Coefficients diagonaux*/
+		M[1] = detJacobienne/24.0; /*Autres coefficients*/
 	}
 }
