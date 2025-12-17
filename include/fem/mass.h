@@ -15,7 +15,26 @@
  *
  * Hiden for now.
  */
+
 void inline mass(const Vec3d &AB, const Vec3d &AC, double *__restrict M)
 {
-	/* Your implementation goes here ! */
+	/*On calcule le déterminant de la Jacobienne*/
+	/*Même si cross est le pdt vectoriel en 3D on peut écrire (x,y,0) et comme on prend la norme on a exactement ce qu'on veut*/
+    
+	double detJacobienne = norm(cross(AB,AC));
+
+	if (detJacobienne == 0.0)
+	{
+		 std::cout << "Les points sont alignés : on n'a pas un triangle !" << std::endl;
+	}
+
+	else {
+		for (int i=0; i<3; i++)
+		{
+			for (int j=0; j<3; j++)
+			{
+				M[3*i+j] = (i==j) ? : (detJacobienne/12.0) : (detJacobienne/24.0) ;
+			}	
+		}
+	}
 }
