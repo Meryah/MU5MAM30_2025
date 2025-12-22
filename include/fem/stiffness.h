@@ -40,12 +40,12 @@ void inline stiffness(const Vec3d &AB, const Vec3d &AC, double *__restrict S)
 	else{
 	/* La matrice est symétrique donc on calcule que 6 coefficients*/
 
-		S[0] = (norme_AC + norme_AB - norme_BC)/(4*Aire);  /* int (gradient phiA * gradient phiA) */
-		S[1] = (norme_BC - norme_AB)/(4*Aire);             /* int (gradient phiA * gradient phiB) */
-		S[2] = (norme_BC - norme_AC)/(4*Aire);             /* int (gradient phiA * gradient phiC) */
-		S[3] = (norme_BC + norme_AB - norme_AC)/(4*Aire) ; /* int (gradient phiB * gradient phiB) */
-		S[4] =	(norme_AC - norme_BC)/(4*Aire);            /* int (gradient phiB * gradient phiC) */
-		S[5] = (norme_BC + norme_AC - norme_AB)/(4*Aire);  /* int (gradient phiC* gradient phiC) */
+		S[0] = (norme_AC + norme_AB - norme_BC)/(4*Aire);  /* int (gradient phiA.gradient phiA) */
+		S[1] = (norme_BC - norme_AB)/(4*Aire);             /* int (gradient phiA.gradient phiB) */
+		S[2] = (norme_BC - norme_AC)/(4*Aire);             /* int (gradient phiA.gradient phiC) */
+		S[3] = (norme_BC + norme_AB - norme_AC)/(4*Aire) ; /* int (gradient phiB.gradient phiB) */
+		S[4] =	(norme_AC - norme_BC)/(4*Aire);            /* int (gradient phiB.gradient phiC) */
+		S[5] = (norme_BC + norme_AC - norme_AB)/(4*Aire);  /* int (gradient phiC.gradient phiC) */
 
 	}
 }
