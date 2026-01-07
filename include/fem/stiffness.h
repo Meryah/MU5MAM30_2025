@@ -24,4 +24,29 @@
 void inline stiffness(const Vec3d &AB, const Vec3d &AC, double *__restrict S)
 {
 	/* Your implementation goes here */
+
+	double norme_AC = norm2(AC);
+	double norme_AB = norm2(AB);
+	double pdt_scalaire = dot(AC,AB);
+	double norme_BC = norme_AC - 2 * pdt_scalaire + norme_AB; /* On écrit ||B-C||^2 = ||(C-A)-(B-A)||^2 et on developpe */
+
+	double Aire = (0.5)*(norm(cross(AB,AC)));
+
+	if (Aire == 0.0)
+	{
+		 std::cout << "Les points sont alignés : on n'a pas un triangle !" << std::endl;
+	}
+
+	else{
+	/* La matrice est symétrique donc on calcule que 6 coefficients*/
+
+		/* BC = AB - AC */
+		S[0] =  norme_BC /(4*Aire);                 /* int (gradient phiA.gradient phiA) */
+		S[1] = (pdt_scalaire - norme_AC)/(4*Aire);  /* int (gradient phiA.gradient phiB) */
+		S[2] = (norme_AB - pdt_scalaire )/(4*Aire); /* int (gradient phiA.gradient phiC) */
+		S[3] =  norme_AC /(4*Aire) ; 	            /* int (gradient phiB.gradient phiB) */
+		S[4] =	pdt_scalaire /(4*Aire);             /* int (gradient phiB.gradient phiC) */
+		S[5] =  norme_AB/(4*Aire);                  /* int (gradient phiC.gradient phiC) */
+
+	}
 }

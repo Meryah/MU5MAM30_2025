@@ -16,6 +16,8 @@
  * Hiden for now.
  */
 
+	/* Your implementation goes here ! */
+
 void inline mass(const Vec3d &AB, const Vec3d &AC, double *__restrict M)
 {
 /* On met mass et stifness dans la même fonction*/
