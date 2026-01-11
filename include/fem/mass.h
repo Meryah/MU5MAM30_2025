@@ -20,6 +20,8 @@
 
 void inline mass(const Vec3d &AB, const Vec3d &AC, double *__restrict M)
 {
+/* On met mass et stifness dans la même fonction*/
+
 	/*On calcule le déterminant de la Jacobienne*/
 	/*Même si cross est le pdt vectoriel en 3D on peut écrire (x,y,0) et comme on prend la norme on a exactement ce qu'on veut*/
     
