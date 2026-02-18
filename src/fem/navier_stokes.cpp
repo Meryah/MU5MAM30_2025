@@ -20,7 +20,11 @@ NavierStokesSolver::NavierStokesSolver(const Mesh &m)
 }
 
 void NavierStokesSolver::set_zero_mean(double *V)
+<<<<<<< HEAD
 {
+=======
+{	
+>>>>>>> 4b75a54db3b0218f5001c979c355466a5d27ccca
 	M.mvp(V, Ap.data);
 	double s = blas_sum_in_place(Ap.data, N);
 	for (size_t i = 0; i < N; ++i) {
